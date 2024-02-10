@@ -24,7 +24,7 @@ const productSchema = new Schema({
   },
   stock: {
     type: Number,
-    min: [0, "Stock cant be less than 1"],
+    min: [0, "Stock cant be less than 0"],
     default: 0,
   },
   brand: { type: String, required: true },
@@ -32,7 +32,7 @@ const productSchema = new Schema({
   thumbnail: { type: String, required: true },
   images: { type: [String], required: true },
   deleted: { type: Boolean, default: false },
-});
+}); 
 
 const virtual = productSchema.virtual("id");
 virtual.get(function () {

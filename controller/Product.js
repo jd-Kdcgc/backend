@@ -11,8 +11,12 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.fetchAllProductsByFilters = async (req, res) => {
-  let query = Product.find({});
-  let totalProductsQuery = Product.find({});
+  let condition = {};
+  if (!req.query.admin) {
+    condition.deleted = { $ne: true };
+  }
+  let query = Product.find(condition);
+  let totalProductsQuery = Product.find(condition);
 
   if (req.query.category) {
     totalProductsQuery = totalProductsQuery.find({
